@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<title>GlobEnc/gen</title>
+<meta content="Org Mode" name="generator" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: &#39;Asymptote&#39;; }
+  pre.src-awk:before { content: &#39;Awk&#39;; }
+  pre.src-authinfo::before { content: &#39;Authinfo&#39;; }
+  pre.src-C:before { content: &#39;C&#39;; }
+  /* pre.src-C++ doesn&#39;t work in CSS */
+  pre.src-clojure:before { content: &#39;Clojure&#39;; }
+  pre.src-css:before { content: &#39;CSS&#39;; }
+  pre.src-D:before { content: &#39;D&#39;; }
+  pre.src-ditaa:before { content: &#39;ditaa&#39;; }
+  pre.src-dot:before { content: &#39;Graphviz&#39;; }
+  pre.src-calc:before { content: &#39;Emacs Calc&#39;; }
+  pre.src-emacs-lisp:before { content: &#39;Emacs Lisp&#39;; }
+  pre.src-fortran:before { content: &#39;Fortran&#39;; }
+  pre.src-gnuplot:before { content: &#39;gnuplot&#39;; }
+  pre.src-haskell:before { content: &#39;Haskell&#39;; }
+  pre.src-hledger:before { content: &#39;hledger&#39;; }
+  pre.src-java:before { content: &#39;Java&#39;; }
+  pre.src-js:before { content: &#39;Javascript&#39;; }
+  pre.src-latex:before { content: &#39;LaTeX&#39;; }
+  pre.src-ledger:before { content: &#39;Ledger&#39;; }
+  pre.src-lisp:before { content: &#39;Lisp&#39;; }
+  pre.src-lilypond:before { content: &#39;Lilypond&#39;; }
+  pre.src-lua:before { content: &#39;Lua&#39;; }
+  pre.src-matlab:before { content: &#39;MATLAB&#39;; }
+  pre.src-mscgen:before { content: &#39;Mscgen&#39;; }
+  pre.src-ocaml:before { content: &#39;Objective Caml&#39;; }
+  pre.src-octave:before { content: &#39;Octave&#39;; }
+  pre.src-org:before { content: &#39;Org mode&#39;; }
+  pre.src-oz:before { content: &#39;OZ&#39;; }
+  pre.src-plantuml:before { content: &#39;Plantuml&#39;; }
+  pre.src-processing:before { content: &#39;Processing.js&#39;; }
+  pre.src-python:before { content: &#39;Python&#39;; }
+  pre.src-R:before { content: &#39;R&#39;; }
+  pre.src-ruby:before { content: &#39;Ruby&#39;; }
+  pre.src-sass:before { content: &#39;Sass&#39;; }
+  pre.src-scheme:before { content: &#39;Scheme&#39;; }
+  pre.src-screen:before { content: &#39;Gnu Screen&#39;; }
+  pre.src-sed:before { content: &#39;Sed&#39;; }
+  pre.src-sh:before { content: &#39;shell&#39;; }
+  pre.src-sql:before { content: &#39;SQL&#39;; }
+  pre.src-sqlite:before { content: &#39;SQLite&#39;; }
+  /* additional languages in org.el&#39;s org-babel-load-languages alist */
+  pre.src-forth:before { content: &#39;Forth&#39;; }
+  pre.src-io:before { content: &#39;IO&#39;; }
+  pre.src-J:before { content: &#39;J&#39;; }
+  pre.src-makefile:before { content: &#39;Makefile&#39;; }
+  pre.src-maxima:before { content: &#39;Maxima&#39;; }
+  pre.src-perl:before { content: &#39;Perl&#39;; }
+  pre.src-picolisp:before { content: &#39;Pico Lisp&#39;; }
+  pre.src-scala:before { content: &#39;Scala&#39;; }
+  pre.src-shell:before { content: &#39;Shell Script&#39;; }
+  pre.src-ebnf2ps:before { content: &#39;ebfn2ps&#39;; }
+  /* additional language identifiers per &quot;defun org-babel-execute&quot;
+       in ob-*.el */
+  pre.src-cpp:before  { content: &#39;C++&#39;; }
+  pre.src-abc:before  { content: &#39;ABC&#39;; }
+  pre.src-coq:before  { content: &#39;Coq&#39;; }
+  pre.src-groovy:before  { content: &#39;Groovy&#39;; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: &#39;bash&#39;; }
+  pre.src-csh:before  { content: &#39;csh&#39;; }
+  pre.src-ash:before  { content: &#39;ash&#39;; }
+  pre.src-dash:before  { content: &#39;dash&#39;; }
+  pre.src-ksh:before  { content: &#39;ksh&#39;; }
+  pre.src-mksh:before  { content: &#39;mksh&#39;; }
+  pre.src-posh:before  { content: &#39;posh&#39;; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: &#39;Ada&#39;; }
+  pre.src-asm:before { content: &#39;Assembler&#39;; }
+  pre.src-caml:before { content: &#39;Caml&#39;; }
+  pre.src-delphi:before { content: &#39;Delphi&#39;; }
+  pre.src-html:before { content: &#39;HTML&#39;; }
+  pre.src-idl:before { content: &#39;IDL&#39;; }
+  pre.src-mercury:before { content: &#39;Mercury&#39;; }
+  pre.src-metapost:before { content: &#39;MetaPost&#39;; }
+  pre.src-modula-2:before { content: &#39;Modula-2&#39;; }
+  pre.src-pascal:before { content: &#39;Pascal&#39;; }
+  pre.src-ps:before { content: &#39;PostScript&#39;; }
+  pre.src-prolog:before { content: &#39;Prolog&#39;; }
+  pre.src-simula:before { content: &#39;Simula&#39;; }
+  pre.src-tcl:before { content: &#39;tcl&#39;; }
+  pre.src-tex:before { content: &#39;TeX&#39;; }
+  pre.src-plain-tex:before { content: &#39;Plain TeX&#39;; }
+  pre.src-verilog:before { content: &#39;Verilog&#39;; }
+  pre.src-vhdl:before { content: &#39;VHDL&#39;; }
+  pre.src-xml:before { content: &#39;XML&#39;; }
+  pre.src-nxml:before { content: &#39;XML&#39;; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list &#39;org-latex-listings-langs &#39;(conf &quot; &quot;)) in .emacs */
+  pre.src-conf:before { content: &#39;Configuration File&#39;; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link href="https://gongzhitaao.org/orgcss/org.css" rel="stylesheet" type="text/css" />
+<link href="https://nightmachinery.github.io/orgmode-styles/notes_1.css" rel="stylesheet" type="text/css" />
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: &quot;left&quot;,
+        displayIndent: &quot;5em&quot;,
+
+        &quot;HTML-CSS&quot;: { scale: 100,
+                        linebreaks: { automatic: &quot;false&quot; },
+                        webFont: &quot;Neo-Euler&quot;
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: &quot;false&quot; },
+              font: &quot;Neo-Euler&quot;},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: &quot;AMS&quot;},
+               MultLineWidth: &quot;85%&quot;,
+               TagSide: &quot;left&quot;,
+               TagIndent: &quot;.8em&quot;
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML" />
+</head>
+<body>
+<div class="content" id="content">
+<h1 class="title">GlobEnc/gen</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#ID-6d4e4087-4b74-4c74-8195-19b4ccd3e8fe">1. <span class="todo at_tag">@citations/0</span> <span class="todo at_tag">@2022/May</span> GlobEnc: Quantifying Global Token Attribution by Incorporating the Whole Encoder Layer in Transformers</a>
+<ul>
+<li><a href="#orge182a91">1.1. mohsenfayyaz/GlobEnc: {NAACL 2022} GlobEnc: Quantifying Global Token Attribution by Incorporating the Whole Encoder Layer in Transformers</a></li>
+<li><a href="#org1e61d1a">1.2. <span class="todo at_tag">@read</span> [jalali:1401/07/29]</a></li>
+<li><a href="#orgb3c3e54">1.3. <span class="todo at_tag">@abstract</span></a></li>
+<li><a href="#ID-a68282db-f8f8-4a9e-b465-f511813ab875">1.4. <span class="todo at_tag">@ideas</span></a></li>
+<li><a href="#org88acdd9">1.5. <span class="todo at_tag">@highlights</span></a></li>
+<li><a href="#org7e82f3a">1.6. <span class="todo at_tag">@questions</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div class="outline-2" id="outline-container-ID-6d4e4087-4b74-4c74-8195-19b4ccd3e8fe">
+<h2 id="ID-6d4e4087-4b74-4c74-8195-19b4ccd3e8fe"><span class="section-number-2">1.</span> <span class="todo at_tag">@citations/0</span> <span class="todo at_tag">@2022/May</span> <a href="https://api.semanticscholar.org/arXiv:2205.03286">GlobEnc: Quantifying Global Token Attribution by Incorporating the Whole Encoder Layer in Transformers</a></h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div class="outline-3" id="outline-container-orge182a91">
+<h3 id="orge182a91"><span class="section-number-3">1.1.</span> <a href="https://github.com/mohsenfayyaz/GlobEnc">mohsenfayyaz/GlobEnc: {NAACL 2022} GlobEnc: Quantifying Global Token Attribution by Incorporating the Whole Encoder Layer in Transformers</a></h3>
+</div>
+
+<div class="outline-3" id="outline-container-org1e61d1a">
+<h3 id="org1e61d1a"><span class="section-number-3">1.2.</span> <span class="todo at_tag">@read</span> [<a href="1401/07/29">1401/07/29</a>]</h3>
+</div>
+
+<div class="outline-3" id="outline-container-orgb3c3e54">
+<h3 id="orgb3c3e54"><span class="section-number-3">1.3.</span> <span class="todo at_tag">@abstract</span></h3>
+<div class="outline-text-3" id="text-1-3">
+<blockquote>
+<p>
+There has been a growing interest in interpreting the underlying dynamics of Transformers. While self-attention patterns were initially deemed as the primary option, recent studies have shown that integrating other components can yield more accurate explanations. This paper introduces a novel token attribution analysis method that incorporates all the components in the encoder block and aggregates this throughout layers. Through extensive quantitative and qualitative experiments, we demonstrate that our method can produce faithful and meaningful global token attributions. Our experiments reveal that incorporating almost every encoder component results in increasingly more accurate analysis in both local (single layer) and global (the whole model) settings. Our global attribution analysis significantly outperforms previous methods on various tasks regarding correlation with gradient-based saliency scores. Our code is freely available at <a href="https://github.com/mohsenfayyaz/GlobEnc">https://github.com/mohsenfayyaz/GlobEnc</a>.
+</p>
+</blockquote>
+
+<pre class="example" id="org7a91244">
+@inproceedings{Modarressi2022GlobEncQG,
+  title={GlobEnc: Quantifying Global Token Attribution by Incorporating the Whole Encoder Layer in Transformers},
+  author={A. Modarressi and Mohsen Fayyaz and Yadollah Yaghoobzadeh and Mohammad Taher Pilehvar},
+  booktitle={NAACL},
+  year={2022}
+}
+</pre>
+</div>
+</div>
+
+<div class="outline-3" id="outline-container-ID-a68282db-f8f8-4a9e-b465-f511813ab875">
+<h3 id="ID-a68282db-f8f8-4a9e-b465-f511813ab875"><span class="section-number-3">1.4.</span> <span class="todo at_tag">@ideas</span></h3>
+<div class="outline-text-3" id="text-1-4">
+<blockquote>
+<p>
+In future work, we plan to apply our global analysis method on various datasets and models, to provide valuable insights into model decisions and interpretability.
+</p>
+</blockquote>
+</div>
+
+<ol class="org-ol">
+<li><a id="org173dc4c" /><span class="todo at_tag">@idea/small</span> We can also add tests with a fixed residual mixing ratio bigger than 0.5. (E.g., 0.6, 0.7, 0.8, 0.9, 0.95, and 0.99 can all be tried as well.) (I think in the paper’s notation, it is actually a ratio smaller than 0.5, as the paper uses the ratio to mix the context, not the residual.)<br /></li>
+
+<li><a id="org7ddf7a7" /><span class="done _idea_accepted"><span class="todo at_tag">@idea/accepted</span></span> We can try extending the work to other transformer networks (encoder-decoder, decoder-only) and other taks. (The classification task being the only task currently studied.)<br />
+<ol class="org-ol">
+<li><a id="orgcb13247" /><span class="todo at_tag">@DrPilehvar</span> decoder-only generative autoregressive models<br /></li>
+</ol>
+</li>
+</ol>
+</div>
+
+<div class="outline-3" id="outline-container-org88acdd9">
+<h3 id="org88acdd9"><span class="section-number-3">1.5.</span> <span class="todo at_tag">@highlights</span></h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<ol class="org-ol">
+<li><a id="org59f0719" />Norm-based attention<br />
+<div class="outline-text-4" id="text-1-5-1">
+<blockquote>
+<p>
+While one may inter- pret the attention mechanism using the attention weights A, Kobayashi et al. (2020) argued that do- ing so would ignore the norm of the transformed vectors multiplied by the weights, elucidating that the weights are insufficient for interpretation.
+</p>
+</blockquote>
+
+<p>
+As a small vector will have little impact even if it has a large weight.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="ID-feed2b16-f227-4649-bf13-04ef43e96025" /><span class="todo QUESTION">QUESTION</span> A central assumption of this whole Kobayashi line of work is that a small vector norm means little information. Is this warranted? Aren’t the positional embeddings, for example, small in magnitude? Ultimately, a lower bit of a weight can carry as much information as a higher bit, no?<br />
+<div class="outline-text-5" id="text-1-5-1-1">
+</div>
+</li>
+
+<li><a id="org442648c" />The magnitude of the input vector is not the only other factor that matters; the magnitude of the liner projections that convert it to a value vector and finally mix the concatenated outputs of all the heads, matter, as well.<br />
+<ol class="org-ol">
+<li><a id="orgced69eb" /><a href="#ID-00a8f1d6-bc5a-4e88-b9ad-467da0c2d0f6">see here</a><br /></li>
+</ol>
+</li>
+</ol>
+</li>
+
+<li><a id="ID-93829e43-bd20-4862-8aea-94e6c271187d" />By reformulating Equation 1, we can consider zi as a summation over the attentions heads:<br />
+<div class="outline-text-4" id="text-1-5-2">
+
+<div class="figure" id="orgffb0976">
+<p><img alt="20221022_011115_L23pce.png" src="gen.org_imgs/20221022_011115_L23pce.png" width="622" />
+</p>
+</div>
+
+
+<div class="figure" id="org1fdfe1a">
+<p><img alt="20221022_011043_yu3a6o.png" src="gen.org_imgs/20221022_011043_yu3a6o.png" width="505" />
+</p>
+</div>
+</div>
+
+<ol class="org-ol">
+<li><a id="org08590de" />the value vectors \(v(x_j)\)<br /></li>
+<li><a id="org217a829" />the projection \(W_O\) with the shape <code>(head_count*head_dim, hidden_dim)</code><br /></li>
+
+<li><a id="orga9f2c62" /><span class="todo CONFIRM">CONFIRM</span> One might wonder whether \(W_O\) is superfluous as there is no nonlinearity between \(v^h\) and \(W_O\). I think the key point is that these two matrices are a decomposition of a bigger matrix B:<br />
+<div class="outline-text-5" id="text-1-5-2-3">
+<p>
+\(v^h_{hidden \times head\_dim} \times W^h_{O,\ head\_dim \times hidden} = B_{hidden
+\times hidden}\)
+</p>
+</div>
+</li>
+
+<li><a id="ID-00a8f1d6-bc5a-4e88-b9ad-467da0c2d0f6" />_<br />
+<div class="outline-text-5" id="text-1-5-2-4">
+
+<div class="figure" id="org338e934">
+<p><img alt="20221022_012427_kcMIXS.png" src="gen.org_imgs/20221022_012427_kcMIXS.png" width="637" />
+</p>
+</div>
+</div>
+
+<ol class="org-ol">
+<li><a id="org7f0bccf" />actually \(\mathcal{N}_{i,j} := \|z_{i \leftarrow j}\|\)<br /></li>
+
+<li><a id="org470b557" />\(n\) is the number of the input tokens.<br /></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+
+<div class="outline-3" id="outline-container-org7e82f3a">
+<h3 id="org7e82f3a"><span class="section-number-3">1.6.</span> <span class="todo at_tag">@questions</span></h3>
+<div class="outline-text-3" id="text-1-6">
+</div>
+<ol class="org-ol">
+<li><a id="orga14ac16" /><span class="todo at_tag">@togrok</span><br />
+<ol class="org-ol">
+<li><a id="org4220eec" />How were the gradients of the hidden token attributions (HTA) extracted?<br /></li>
+</ol>
+</li>
+
+<li><a id="orgf15c6a1" /><span class="todo QUESTION">QUESTION</span> Does “computational intensity” mean computational cost?<br />
+<div class="outline-text-4" id="text-1-6-2">
+<blockquote>
+<p>
+Additionally, gradient-based alternatives (Si- monyan et al., 2014; Kindermans et al., 2016; Li et al., 2016) have been argued to provide a more ro- bust basis for token attribution analysis (Atanasova et al., 2020; Brunner et al., 2020; Pascual et al., 2021). Nonetheless, the gradient-based alternatives have not been able to fully replace attention-based counterparts, mainly due to their high computational intensity.
+</p>
+</blockquote>
+</div>
+
+<ol class="org-ol">
+<li><a id="org0a89c55" /><span class="todo QUESTION">QUESTION</span> Aren’t gradient based methods susceptible to adversarial examples?<br /></li>
+</ol>
+</li>
+
+<li><a id="ID-7343880b-729f-45c1-b173-5c0e752205ab" /><span class="todo CONFIRM">CONFIRM</span> Does \(1[i=j]\) mean that if \(i=j\), output one else output zero?<br />
+<div class="outline-text-4" id="text-1-6-3">
+
+<div class="figure" id="orge044818">
+<p><img alt="20221022_014438_nB7GzT.png" src="gen.org_imgs/20221022_014438_nB7GzT.png" width="628" />
+</p>
+</div>
+</div>
+</li>
+
+<li><a id="org773c893" /><span class="todo CONFIRM">CONFIRM</span> So the tenth equation is bogus, right? It shows what we desired, but the equality is actually not true.<br />
+<div class="outline-text-4" id="text-1-6-4">
+
+<div class="figure" id="orgd1fb6ee">
+<p><img alt="20221022_022625_o2VjVq.png" src="gen.org_imgs/20221022_022625_o2VjVq.png" width="711" />
+</p>
+</div>
+</div>
+</li>
+
+<li><a id="ID-67058c0b-15bb-4acd-ab9b-c5c39933854f" /><span class="todo QUESTION">QUESTION</span> Shouldn’t the attribution matrix \(\mathcal{N}\) be normalized along each of its rows?<br />
+<div class="outline-text-4" id="text-1-6-5">
+
+<div class="figure" id="org4d1229f">
+<p><img alt="20221022_032614_DwkE0F.png" src="gen.org_imgs/20221022_032614_DwkE0F.png" width="688" />
+</p>
+</div>
+</div>
+
+<ol class="org-ol">
+<li><a id="org25f6dba" /><span class="todo QUESTION">QUESTION</span> This is especially concering when we multiply the attribution matrices of the consequtive layers. Without the normalization, this operation doesn’t make sense IMO.<br />
+<div class="outline-text-5" id="text-1-6-5-1">
+<p>
+See this example. \(input_{1}\) and \(input_{3}\) contribute equally IMO, but \(input_{1}\) is 10 and \(input_{3}\) is 1!
+</p>
+
+<p>
+Of course, this particular example might be impossible due to the layer norms, but the general principle stands.
+</p>
+
+\begin{aligned}
+\mathcal{N}_1 &amp;= \begin{bmatrix}
+    10 &amp; 0 &amp; 0 \\
+    1 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 1 \\
+\end{bmatrix}
+\\
+\mathcal{N}_2 &amp;= \begin{bmatrix}
+    1 &amp; 0 &amp; 1 \\
+    \hdotsfor{3} \\
+    \hdotsfor{3} \\
+\end{bmatrix}
+\\
+\mathcal{N}_2 \times \mathcal{N}_1 &amp;= \begin{bmatrix}
+    1 &amp; 0 &amp; 1 \\
+    \hdotsfor{3} \\
+    \hdotsfor{3} \\
+\end{bmatrix} \times \begin{bmatrix}
+    10 &amp; 0 &amp; 0 \\
+    1 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 1 \\
+\end{bmatrix} = \begin{bmatrix}
+    10 &amp; 0 &amp; 1 \\
+    \hdotsfor{3} \\
+    \hdotsfor{3} \\
+\end{bmatrix}
+\end{aligned}
+</div>
+</li>
+
+<li><a id="orga16ecd9" /><span class="todo QUESTION">QUESTION</span> The diagrams are also unclear. Is each row supposed to sum to one?!<br />
+<div class="outline-text-5" id="text-1-6-5-2">
+
+<div class="figure" id="orga81f26e">
+<p><img alt="20221022_045153_rmeqaI.png" src="gen.org_imgs/20221022_045153_rmeqaI.png" width="580" />
+</p>
+</div>
+</div>
+</li>
+</ol>
+</li>
+
+
+<li><a id="org4e43f95" />_<br />
+<div class="outline-text-4" id="text-1-6-6">
+
+<div class="figure" id="orgcc7f1f4">
+<p><img alt="20221022_040615_40CB8Q.png" src="gen.org_imgs/20221022_040615_40CB8Q.png" width="674" />
+</p>
+</div>
+<blockquote>
+<p>
+Figure 3: Spearman’s rank correlation of aggregated at- tribution scores with saliency scores across layers. The 99% confidence intervals are shown as (narrow) shaded areas around each line.
+</p>
+</blockquote>
+</div>
+
+<ol class="org-ol">
+<li><a id="org0bfe256" /><span class="todo QUESTION">QUESTION</span> Why are some of the coefficients negative? Does this mean that more raw attention paid was actually negatively correlated with impact on the final output?!<br /></li>
+
+<li><a id="ID-50a52c91-a056-459e-a18a-52ad41945fc4" /><span class="todo QUESTION">QUESTION</span> We are using the saliency scores just as a way to check our work, correct? They are not the actual ground truth, are they?<br />
+<div class="outline-text-5" id="text-1-6-6-2">
+</div>
+<ol class="org-ol">
+<li><a id="org75a9abb" />If they are, why are bothering with calculating GlobEnc in the first place?<br />
+<ol class="org-ol">
+<li><a id="orgdbb0a03" /><a href="../gen.html#ID-fcec6b30-0a39-4f36-9a16-c863130de804"><span class="todo at_tag">@citations/76</span> <span class="todo at_tag">@2020/October</span> The elephant in the interpretability room: Why use attention as explanation when we have saliency methods?</a><br /></li>
+
+
+<li><a id="orgb214aaf" /><span class="todo at_tag">@DrPilehvar</span><br />
+<ol class="org-ol">
+<li><a id="org22bdcbc" />The gradient based hidden token attributions (HTAs) are very expensive to compute. But GlobEnc is cheap, and can show us the attribution across all the layers. Normal gradient w.r.t the output only give us the final layer, and not the intermediate ones.<br /></li>
+
+<li><a id="org7b5188b" />Gradient-based methods need us to focus on the effect of the inputs on a single continuous output. So the gradient-based methods are good when we have a classifier.<br />
+<ol class="org-ol">
+<li><a id="ID-5fbc125b-2756-4738-a58f-142ed88c477b" /><span class="todo QUESTION">QUESTION</span> The attribution-based methods can show us if the pretrained BERT is biased towards some task, e.g., question-answering or NLU.<br />
+<div class="outline-text-9" id="text-1-6-6-2-1-2-2-1">
+</div>
+</li>
+</ol>
+</li>
+
+<li><a id="org69c9a9b" />GlobEnc, due to its limitations and skipping the feedforward networks, can help us isolate the effects of the different parts of the model. E.g., our experiments show that GlobEnc becomes mostly fixed after some initial finetuning (around one epoch if the dataset is not too big). This means the later epochs are mostly adjusting these feedforward networks.<br />
+<ol class="org-ol">
+<li><a id="ID-82b01905-d237-499d-8dbb-56294c9a5059" /><span class="todo QUESTION">QUESTION</span> <span class="todo at_tag">@me</span> Couldn’t we also get this with the gradient-based methods by the straight through technique? Though it would potentially be slower, but it’s very flexible.<br />
+<div class="outline-text-9" id="text-1-6-6-2-1-2-3-1">
+</div>
+<ol class="org-ol">
+<li><a id="orgedb55d1" /><a href="https://jax.readthedocs.io/en/latest/jax-101/04-advanced-autodiff.html#straight-through-estimator-using-stop-gradient">Advanced Automatic Differentiation in JAX — JAX documentation</a><br /></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+
+<li><a id="org361fd76" /><span class="todo QUESTION">QUESTION</span> I did not understand what use these HTAs were, and how exactly GlobEnc was “better” than them.<br />
+<div class="outline-text-4" id="text-1-6-7">
+<blockquote>
+<p>
+Using a newly proposed and improved version of Hidden Token Attribution, we demonstrated that encoder-based attribution analy- sis is more accurate when compared to other partial solutions in a single layer (local-level). This is con- sistent with our global observations.
+</p>
+</blockquote>
+</div>
+</li>
+
+<li><a id="ID-8841b770-c00e-49ba-a1c3-76a1a6133a33" /><span class="todo QUESTION">QUESTION</span> Which weights are these?<br />
+<div class="outline-text-4" id="text-1-6-8">
+<p>
+They can’t be the bias weights (not incorporated in GlobEnc). So they are the elementwise standard deviations of the result?
+</p>
+
+
+<div class="figure" id="orgc7f6033">
+<p><img alt="20221022_120314_TBdbJv.png" src="gen.org_imgs/20221022_120314_TBdbJv.png" width="633" />
+</p>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+

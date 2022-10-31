@@ -1,0 +1,7 @@
+#+TITLE: tmp_mojo_bug
+
+#+begin_example zsh
+cat gen.html | perl -CS a.pl > out.html
+#+end_example
+
+=out.html= will be empty when opened by Chrome.
